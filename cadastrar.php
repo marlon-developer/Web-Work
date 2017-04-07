@@ -7,7 +7,7 @@
     if (empty($_POST['cb_crianca']) && empty($_POST['cb_adolescente']) && empty($_POST['cb_adulto'])) echo "Pelo Menos um Campo Deve Ser Selecionado!<br>";
 
     //Abertura do Arquivo
-    $criar_arquivo = fopen($_POST['tx_nome'] ."_". $_POST['tx_fabricante'] .".txt", "w");
+    $criar_arquivo = fopen("arquivos/". $_POST['tx_nome'] ."_". $_POST['tx_fabricante'] .".txt", "w");
     
     //Gravaçao das linhas do arquivo
     fwrite($criar_arquivo, $_POST['tx_nome'] ."\r\n");
