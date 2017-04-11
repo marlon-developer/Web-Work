@@ -1,13 +1,14 @@
 <?php  
+
+    //Abertura do Arquivo
+    $criar_arquivo = fopen("arquivos/". $_POST['tx_nome'] ."_". $_POST['tx_fabricante'] .".txt", "w");
+        
     //Tratamento Caso Algum Campo esteja Vazio!
     if (empty($_POST['tx_nome'])) echo "O Campo Nao Pode Ser Vazio!<br>";
 	if (empty($_POST['tx_descricao'])) echo "O Campo Nao Pode Ser Vazio!<br>";
 	if (empty($_POST['tx_fabricante'])) echo "O Campo Nao Pode Ser Vazio!<br>";
     if (empty($_POST['rb_tipo'])) echo "Marque uma Opçao!<br>";
     if (empty($_POST['cb_crianca']) && empty($_POST['cb_adolescente']) && empty($_POST['cb_adulto'])) echo "Pelo Menos um Campo Deve Ser Selecionado!<br>";
-
-    //Abertura do Arquivo
-    $criar_arquivo = fopen($_POST['tx_nome'] ."_". $_POST['tx_fabricante'] .".txt", "w");
     
     //Gravaçao das linhas do arquivo
     fwrite($criar_arquivo, $_POST['tx_nome'] ."\r\n");

@@ -10,7 +10,7 @@
     $criar_arquivo = fopen("arquivos/". $_POST['tx_nome'] ."_". $_POST['tx_fabricante'] .".txt", "w");
     
     //Gravaçao das linhas do arquivo
-    fwrite($criar_arquivo, $_POST['tx_nome'] ."\r\n");
+    fwrite($criar_arquivo, md5($_POST['tx_nome']) ."\r\n");
     fwrite($criar_arquivo, $_POST['tx_descricao'] ."\r\n");
     fwrite($criar_arquivo, $_POST['tx_fabricante'] ."\r\n");
     if (!empty($_POST['rb_tipo'])) fwrite($criar_arquivo, $_POST['rb_tipo']."\r\n");
