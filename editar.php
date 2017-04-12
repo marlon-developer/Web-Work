@@ -11,7 +11,7 @@
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Navegação</span>
@@ -40,10 +40,9 @@
 
   <!-- Formulario Cadastro -->
   <form method="POST" action="cadastrar.php">
-
      <!-- Campo de Texto -->
      <div class="form-group col-md-4">
-       <label for="campo1">Nome</label>
+       <label for="campo1"  >Nome</label>
        <input type="text" name="tx_nome" class="form-control" id="campo1">
      </div>
      
@@ -98,5 +97,37 @@
 </div>
  <script src="js/jquery.min.js"></script>
  <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<?php 
+    //Abertura do Arquivo
+    $abrir_arquivo = fopen("arquivos/" .$_POST['tx_nome'].".txt", "w");
+
+    //Tratamento Caso Algum Campo esteja Vazio!
+    if (empty($_POST['tx_nome'])) echo "O Campo Nao Pode Ser Vazio!<br>";
+    if (empty($_POST['tx_email'])) echo "O Campo Nao Pode Ser Vazio!<br>";
+    if (empty($_POST['cb_pessoal']) && empty($_POST['cb_profissional'])) echo "Pelo menos um campo deve ser marcado!<br>";
+    if (empty($_POST['rb_grupo'])) echo "Marque uma Opçao!<br>";
+
+    //Gravaçao das linhas do arquivo
+    fwrite($abrir_arquivo, $_POST['tx_nome'] ."\r\n");
+    fwrite($abrir_arquivo, $_POST['tx_email'] ."\r\n");
+    if(isset($_POST['cb_pessoal'])) fwrite($abrir_arquivo, $_POST['cb_pessoal'] ."\r\n");
+    if(isset($_POST['cb_profissional']))fwrite($abrir_arquivo, $_POST['cb_profissional'] ."\r\n");
+    fwrite($abrir_arquivo, $_POST['rb_grupo'] ."\r\n");
+    
+    //Fechando o Arquivo
+    fclose($abrir_arquivo);
+
+    //Mensagem de Confirmaçao
+    echo "Seus Dados Foram Salvos Com Sucesso!!!";
+?>
+
+<html>
+<body>
+    <p><a href="cadastrar.php">Cadastrar</a></p>
+    <p><a href="listar.php">Editar</a></p>
+    <p><a href="listar_completo.php">Listar Produtos</a></p>
 </body>
 </html>

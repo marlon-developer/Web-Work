@@ -7,13 +7,13 @@
     if (empty($_POST['cb_crianca']) && empty($_POST['cb_adolescente']) && empty($_POST['cb_adulto'])) echo "Pelo Menos um Campo Deve Ser Selecionado!<br>";
 
     //Abertura do Arquivo
-    $criar_arquivo = fopen($_POST['tx_nome'] ."_". $_POST['tx_descricao'] .".txt", "w");
+    $criar_arquivo = fopen("arquivos/". $_POST['tx_nome'] ."_". $_POST['tx_fabricante'] .".txt", "w");
     
     //Gravaçao das linhas do arquivo
     fwrite($criar_arquivo, $_POST['tx_nome'] ."\r\n");
     fwrite($criar_arquivo, $_POST['tx_descricao'] ."\r\n");
     fwrite($criar_arquivo, $_POST['tx_fabricante'] ."\r\n");
-    if (!empty($_POST['rb_tipo'])) fwrite($criar_arquivo, $_POST['rb_tipo']);
+    if (!empty($_POST['rb_tipo'])) fwrite($criar_arquivo, $_POST['rb_tipo']."\r\n");
     if (!empty($_POST['cb_crianca'])) fwrite($criar_arquivo, $_POST['cb_crianca'] ."\r\n");
     if (!empty($_POST['cb_adolescente'])) fwrite($criar_arquivo, $_POST['cb_adolescente'] ."\r\n");
     if (!empty($_POST['cb_adulto'])) fwrite($criar_arquivo, $_POST['cb_adulto'] ."\r\n");
@@ -24,3 +24,14 @@
     //Mensagem de Confirmaçao
     echo "Seus Dados Foram Salvos Com Sucesso!!!";
 ?>
+
+<html>
+<body>
+    <p><a href="listar.php">Listar Produtos</a></p>
+    <p><a href="listar_completo.php">Listar Produtos com Dados</a></p>
+    <p><a href="editar.html">Alterar Consultar e Editar</a></p>
+</body>
+</html>
+
+
+
